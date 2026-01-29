@@ -10,7 +10,7 @@ A Django ToDoList é uma aplicação web para gestão de tarefas pessoais, ofere
 
 * Registo e autenticação de utilizadores
 
-* * CRUD de tarefas vinculado ao utilizador
+* CRUD de tarefas vinculado ao utilizador
 
 * Gestão de sessões autenticadas
 
@@ -44,15 +44,28 @@ A Django ToDoList é uma aplicação web para gestão de tarefas pessoais, ofere
 
 * UC3 – Gerir tarefas: permite gerir exclusivamente as tarefas do utilizador logado:
 
-* * UC3.1 – Editar tarefa
+  * UC3.1 – Editar tarefa
 
-* * UC3.2 – Eliminar tarefa
+  * UC3.2 – Eliminar tarefa
 
-* * UC3.3. – Alterar estado tarefa (Pendente, Concluída)
+  * UC3.3. – Alterar estado tarefa (Pendente, Concluída)
 
 * UC5 – Logout: permite encerrar a sessão e retornar ao ecrã de Login.
 
 ## 5. Quadro Explicativo dos Casos de Uso
+
+## 📌 Casos de Uso – Tabela Resumida
+
+| Caso de Uso        | Atores              | Pré‑condições         | Fluxo Principal                                                                 | Fluxos Alternativos                | Pós‑condições                      |
+|--------------------|---------------------|------------------------|----------------------------------------------------------------------------------|------------------------------------|-------------------------------------|
+| **UC0 – Registar Utilizador** | Utilizador          | Aplicação disponível | Preencher formulário → Validar dados → Guardar utilizador                       | Utilizador existente: exibe erro   | Utilizador criado e autenticado     |
+| **UC1 – Autenticação**       | Utilizador          | Utilizador cadastrado | Inserir credenciais → Sistema valida → Cria sessão                              | Credenciais inválidas: exibe erro  | Utilizador autenticado              |
+| **UC2 – Registar tarefa**    | Utilizador autenticado | Sessão ativa        | Preencher formulário → Validar dados → Guardar tarefa                           | Dados inválidos: exibe erro        | Tarefa criada e vinculada ao utilizador |
+| **UC3 – Gerir tarefas**      | Utilizador autenticado | Sessão ativa        | Solicitar lista → Exibir tarefas do Utilizador                                 | Sem tarefas: exibe lista vazia     | Lista apresentada                    |
+| **UC3.1 – Editar tarefa**    | Utilizador autenticado | Ser dono da tarefa | Selecionar tarefa → Modificar dados → Validar → Guardar                         | Não é dono: bloqueia edição        | Tarefa atualizada                    |
+| **UC3.2 – Eliminar tarefa**  | Utilizador autenticado | Ser dono da tarefa | Selecionar tarefa → Confirmar eliminação → Eliminar                             | Não é dono: bloqueia eliminação    | Tarefa removida                      |
+| **UC3.3 – Alternar tarefa**  | Utilizador autenticado | Ser dono da tarefa | Selecionar tarefa → Alternar estado                                             | Não é dono: bloqueia alternar      | Tarefa atualizada                    |
+| **UC5 – Logout**             | Utilizador autenticado | Sessão ativa        | Sair → Encerrar sessão                                                          | —                                  | Ecrã de login apresentado            |
 
 ## 7. Dicionário de Dados 
 
@@ -87,7 +100,7 @@ Link: Registo de novo utilizador
 
 ### 2. Gestão de Tarefas:
 
-Exibição em tabela: título, Estadi, ações (alternar, editar, apagar)
+Exibição em tabela: título, Estado, ações (alternar, editar, apagar)
 
 Botão: Nova tarefa
 
